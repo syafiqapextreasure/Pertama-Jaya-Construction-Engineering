@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@700;800&amp;family=Orbitron:wght@800;900&amp;display=swap');
+
+      .brand-title {
+        font-family: 'Orbitron', 'Chakra Petch', -apple-system, sans-serif;
+        font-size: 84px;
+        font-weight: 900;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .brand-sub {
+        font-family: 'Orbitron', 'Chakra Petch', -apple-system, sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        fill: #FFFFFF;
+      }
+      .c-white {
+        fill: #FFFFFF;
+      }
+      .c-cyan {
+        fill: #48CAE4;
+      }
+    </style>
+  </defs>
+
+  <!-- ROW 1: P (White) ERTAMA (Cyan)  J (White) AYA (Cyan) -->
+  <g transform="translate(10, 100)">
+    <!-- Path-based or high-spec typographic rendering -->
+    <text class="brand-title">
+      <tspan class="c-white">P</tspan><tspan class="c-cyan">ERTAMA</tspan><tspan class="c-white" dx="28"> J</tspan><tspan class="c-cyan">AYA</tspan>
+    </text>
+  </g>
+
+  <!-- ROW 2: CONSTRUCTION & ENGINEERING SDN  BHD (Pure White) -->
+  <g transform="translate(10, 182)">
+    <text class="brand-sub">CONSTRUCTION &amp; ENGINEERING SDN  BHD</text>
+  </g>
+</svg>
