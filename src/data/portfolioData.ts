@@ -1,11 +1,12 @@
 import { PortfolioItem, RecordedProject } from '../types';
 
 /**
- * Senarai Foto Dokumentasi Projek Fizikal Unik (12 foto tersedia dalam public/assets):
+ * Senarai Foto Dokumentasi Projek Fizikal Unik (18 foto tersedia dalam public/assets):
  * - Saliran (4 foto unik: p27-01 hingga p27-04)
- * - Rumah (1 foto unik: p28-01)
+ * - Rumah (4 foto unik: p28-01 hingga p28-04)
  * - Slab Gas (3 foto unik: p29-01 hingga p29-03)
  * - Jambatan (4 foto unik: p30-01 hingga p30-04)
+ * - Sistem mekanikal / STP (3 foto unik: p31-01 hingga p31-03)
  *
  * Nota: jangan senaraikan fail yang belum wujud di public/assets kerana ia akan
  * menyebabkan imej 404 dan fallback berulang pada kad galeri.
@@ -17,9 +18,13 @@ const RAW_PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: 'p27-03', category: 'Saliran', subcategory: 'Pengorekan Parit Saliran Lebuh Raya', filename: 'p27-03.jpg', relPath: '/assets/portfolio/drainage/p27-03.jpg', altText: 'Kerja pengorekan parit saliran jalan raya menggunakan jengkaut (p27-03)', uploadedAttachment: true },
   { id: 'p27-04', category: 'Saliran', subcategory: 'Pemasangan Papak & Sambungan Paip', filename: 'p27-04.jpg', relPath: '/assets/portfolio/drainage/p27-04.jpg', altText: 'Struktur sambungan paip bawah tanah dan papak pembetung (p27-04)', uploadedAttachment: true },
 
-  // 2. Pembinaan & Ubah Suai Rumah (1 item tersedia)
+  // 2. Pembinaan & Ubah Suai Rumah (4 items)
   { id: 'p28-01', category: 'Rumah', subcategory: 'Kerangka Struktur Tiang & Rasuk Konkrit', filename: 'p28-01.jpg', relPath: '/assets/portfolio/housing/p28-01.jpg', altText: 'Kerangka konkrit bertetulang bertingkat bangunan kediaman (p28-01)', uploadedAttachment: false },
 
+
+  { id: 'p28-02', category: 'Rumah', subcategory: 'Dinding Bata Gabel & Struktur Bumbung', filename: 'p28-02.jpg', relPath: '/assets/portfolio/housing/p28-02.jpg', altText: 'Dinding bata gabel, rasuk konkrit dan kekuda keluli biru pada bangunan dalam pembinaan (p28-02)', uploadedAttachment: true },
+  { id: 'p28-03', category: 'Rumah', subcategory: 'Pembinaan Deretan Rumah', filename: 'p28-03.jpg', relPath: '/assets/portfolio/housing/p28-03.jpg', altText: 'Deretan rumah dalam pembinaan dengan dinding bata, struktur konkrit dan jalan tanah tapak (p28-03)', uploadedAttachment: true },
+  { id: 'p28-04', category: 'Rumah', subcategory: 'Kerja Dalaman & Dinding Bata', filename: 'p28-04.jpg', relPath: '/assets/portfolio/housing/p28-04.jpg', altText: 'Ruang dalaman bangunan dalam pembinaan dengan pekerja, dinding bata dan rasuk konkrit (p28-04)', uploadedAttachment: true },
 
   // 3. Perlindungan Slab Saluran Gas (3 items)
   { id: 'p29-01', category: 'Slab Gas', subcategory: 'Penuangan Papak Konkrit Perlindungan', filename: 'p29-01.jpg', relPath: '/assets/portfolio/gas-slab-protection/p29-01.jpg', altText: 'Penuangan papak konkrit perlindungan saluran paip gas utama (p29-01)', uploadedAttachment: true },
@@ -32,7 +37,10 @@ const RAW_PORTFOLIO_ITEMS: PortfolioItem[] = [
   { id: 'p30-03', category: 'Jambatan', subcategory: 'Pembinaan Tiang Pier Konkrit Bulat', filename: 'p30-03.jpg', relPath: '/assets/portfolio/bridges/p30-03.jpg', altText: 'Pemasangan sangkar besi tiang pier utama jambatan jejambat (p30-03)', uploadedAttachment: false },
   { id: 'p30-04', category: 'Jambatan', subcategory: 'Pembinaan Tembok Abutment & Pier Cap', filename: 'p30-04.jpg', relPath: '/assets/portfolio/bridges/p30-04.jpg', altText: 'Pembinaan struktur penahan dan pier cap jambatan (p30-04)', uploadedAttachment: true },
 
-  // 5. Servis Pam, Air Blower & STP: foto p31 belum wujud dalam public/assets.
+  // 5. Sistem mekanikal / STP (3 items; kapsyen berdasarkan objek yang kelihatan)
+  { id: 'p31-01', category: 'Pam/Blower/STP', subcategory: 'Sistem Penyejukan & Perpaipan', filename: 'p31-01.jpg', relPath: '/assets/portfolio/pumps-blowers-stp/p31-01.jpg', altText: 'Unit penyejukan industri dengan panel berbilah, pelantar akses dan paip hijau (p31-01)', uploadedAttachment: true },
+  { id: 'p31-02', category: 'Pam/Blower/STP', subcategory: 'Tangki Rawatan & Rangkaian Paip', filename: 'p31-02.jpg', relPath: '/assets/portfolio/pumps-blowers-stp/p31-02.jpg', altText: 'Tangki rawatan berisi air dengan rangkaian paip hijau dan injap (p31-02)', uploadedAttachment: true },
+  { id: 'p31-03', category: 'Pam/Blower/STP', subcategory: 'Unit Air Blower Industri', filename: 'p31-03.jpg', relPath: '/assets/portfolio/pumps-blowers-stp/p31-03.jpg', altText: 'Unit air blower industri dengan paip siku besar dan pekerja di sisi mesin (p31-03)', uploadedAttachment: true },
 ];
 
 export const CATEGORY_FALLBACK_MAP: Record<string, string> = {
@@ -40,7 +48,7 @@ export const CATEGORY_FALLBACK_MAP: Record<string, string> = {
   'Rumah': '/assets/portfolio/housing/p28-01.jpg',
   'Slab Gas': '/assets/portfolio/gas-slab-protection/p29-01.jpg',
   'Jambatan': '/assets/portfolio/bridges/p30-01.jpg',
-  'Pam/Blower/STP': '/assets/portfolio/bridges/p30-01.jpg',
+  'Pam/Blower/STP': '/assets/portfolio/pumps-blowers-stp/p31-03.jpg',
 };
 
 export const getFallbackPhoto = (category?: string): string => {

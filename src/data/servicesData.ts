@@ -105,6 +105,10 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Penyelenggaraan tangki pengudaraan aerasi dan paip peresap (diffusers)',
       'Pemeriksaan dan servis menara penyejuk industri (cooling tower)'
     ],
-    sampleImages: []
+    sampleImages: [
+      '/assets/portfolio/pumps-blowers-stp/p31-03.jpg',
+      '/assets/portfolio/pumps-blowers-stp/p31-02.jpg',
+      '/assets/portfolio/pumps-blowers-stp/p31-01.jpg'
+    ]
   }
 ];

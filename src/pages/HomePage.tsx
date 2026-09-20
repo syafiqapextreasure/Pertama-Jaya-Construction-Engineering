@@ -164,7 +164,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                     <HardHat className="w-4 h-4" />
                     <span>Dokumentasi Fizikal Tapak Kerja</span>
                   </span>
-                  <span>72 Rekod Foto</span>
+                  <span>{PORTFOLIO_ITEMS.length} Rekod Foto</span>
                 </div>
 
                 {/* 2x2 Showcase of modest real-photo cards (contain rather than crop) */}
@@ -203,7 +203,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                     onClick={() => onNavigate('/portfolio')}
                     className="text-[14px] text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 font-medium transition-colors"
                   >
-                    <span>Terokai keseluruhan 72 foto projek mengikut kategori</span>
+                    <span>Terokai keseluruhan {PORTFOLIO_ITEMS.length} foto projek mengikut kategori</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -310,7 +310,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
               onClick={() => onNavigate('/portfolio')}
               className="min-h-[48px] px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-white font-semibold text-[16px] border border-slate-700 inline-flex items-center gap-2 self-start md:self-auto transition-colors"
             >
-              <span>Lihat Semua 72 Foto</span>
+              <span>Lihat Semua {PORTFOLIO_ITEMS.length} Foto</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

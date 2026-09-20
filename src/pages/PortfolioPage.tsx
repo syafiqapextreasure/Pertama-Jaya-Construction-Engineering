@@ -163,7 +163,7 @@ export const PortfolioPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Photos Grid (contain rather than crop, preserves aspect ratio, lazy loaded) */}
+          {/* Consistent thumbnail crops; the lightbox preserves the full original photo. */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {filteredItems.map((item, index) => (
               <div
@@ -195,6 +195,9 @@ export const PortfolioPage: React.FC = () => {
                       }
                     }}
                   />
+
+                  {/* Subtle navy edge treatment matches the site without modifying originals. */}
+                  <div aria-hidden="true" className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-t from-slate-950/30 via-transparent to-cyan-950/10 ring-1 ring-inset ring-white/10" />
 
                   {/* Hover Overlay Hint */}
                   <div className="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
