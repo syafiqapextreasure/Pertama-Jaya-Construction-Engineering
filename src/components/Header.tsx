@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenW
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Navigasi Utama">
+          <nav className="hidden xl:flex items-center gap-1 lg:gap-2" aria-label="Navigasi Utama">
             {navItems.map((item) => {
               const isActive = currentPath === item.path;
               return (
@@ -77,7 +77,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenW
           </nav>
 
           {/* Action CTAs - Screenshot 3: WhatsApp button removed from menu header */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             <a
               href={`tel:${SITE_CONFIG.phoneLandline}`}
               className="min-h-[48px] px-4 py-2.5 inline-flex items-center gap-2 text-[16px] font-medium text-slate-200 hover:text-white bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-md transition-colors focus-visible:ring-2 focus-visible:ring-cyan-400 shadow-sm"
@@ -89,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenW
           </div>
 
           {/* Mobile Menu Button - Screenshot 3: WhatsApp removed from mobile header bar */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 xl:hidden">
             <a
               href={`tel:${SITE_CONFIG.phoneLandline}`}
               className="min-h-[48px] min-w-[48px] p-2 flex items-center justify-center text-slate-200 hover:text-white bg-slate-900 border border-slate-800 rounded-md focus-visible:ring-2 focus-visible:ring-cyan-400"
@@ -114,7 +114,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenW
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div
-          className="md:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150"
+          className="xl:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-150"
           role="dialog"
           aria-label="Menu Navigasi Mudah Alih"
         >

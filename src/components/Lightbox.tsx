@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { IllustrationBadge } from './IllustrationBadge';
 import { PortfolioItem } from '../types';
 import { getFallbackPhoto } from '../data/portfolioData';
 import { X, ChevronLeft, ChevronRight, FileText, Info } from 'lucide-react';
@@ -52,16 +53,17 @@ export const Lightbox: React.FC<LightboxProps> = ({
       <div className="absolute inset-0" onClick={onClose} aria-hidden="true" />
 
       {/* Main Lightbox Container */}
-      <div className="relative z-10 w-full max-w-5xl max-h-[95vh] flex flex-col bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden">
+      <div className="relative z-10 w-full max-w-5xl max-h-[95vh] flex flex-col bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-y-auto">
         
         {/* Header Bar */}
         <div className="flex flex-wrap items-center justify-between gap-2 px-4 sm:px-6 py-3.5 bg-slate-950/80 border-b border-slate-800">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
+            {item.imageProvenance === 'ai-generated' && <IllustrationBadge />}
             <span className="px-2.5 py-1 text-[13px] font-bold tracking-wider uppercase rounded bg-cyan-400 text-slate-950">
               {item.category}
             </span>
             <span className="text-[15px] sm:text-[16px] text-slate-200 font-mono">
-              {item.filename}
+              {item.photoUrl?.split('/').pop() || item.filename}
             </span>
             <span className="text-[13px] text-slate-400 hidden sm:inline">
               ({currentIndex + 1} daripada {items.length})
@@ -123,9 +125,14 @@ export const Lightbox: React.FC<LightboxProps> = ({
             <p className="text-[14px] text-slate-400 flex items-center gap-1.5 mt-0.5">
               <Info className="w-4 h-4 text-cyan-400 flex-shrink-0" />
               <span>
-                Dokumentasi fizikal tapak kerja. Tiada nama klien atau lokasi khusus dilabelkan pada foto tanpa kapsyen rasmi.
+                {item.imageProvenance === 'ai-generated'
+                  ? 'Ilustrasi janaan AI, bukan foto dokumentasi tapak sebenar. Rujuk foto asal untuk rekod sumber.'
+                  : 'Imej portfolio. Tiada nama klien atau lokasi khusus dilabelkan tanpa kapsyen rasmi.'}
               </span>
             </p>
+            <a href={item.relPath} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center text-[14px] text-cyan-300 underline underline-offset-4 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400">
+              Lihat foto asal (JPEG)
+            </a>
           </div>
 
           <div className="text-[13px] text-slate-400 font-mono bg-slate-950 px-3 py-1.5 rounded border border-slate-800 flex items-center gap-2 self-start sm:self-center">

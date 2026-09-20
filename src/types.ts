@@ -54,6 +54,8 @@ export interface PortfolioItem {
   filename: string;
   relPath: string;
   photoUrl?: string;
+  /** Display-only illustration; relPath always preserves the original source image. */
+  imageProvenance?: 'ai-generated';
   altText: string;
   uploadedAttachment: boolean;
 }

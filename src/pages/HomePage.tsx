@@ -1,4 +1,5 @@
 import React from 'react';
+import { IllustrationBadge } from '../components/IllustrationBadge';
 import { RoutePath } from '../types';
 import { SITE_CONFIG } from '../config/site';
 import { SERVICES_DATA } from '../data/servicesData';
@@ -45,12 +46,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
     }
   };
 
-  // Selected sample of real photo cards across categories for showcase
+  // Selected portfolio cards; generated display images carry explicit provenance.
   const selectedPhotos = [
     PORTFOLIO_ITEMS.find((p) => p.id === 'p30-01') || PORTFOLIO_ITEMS[0],
     PORTFOLIO_ITEMS.find((p) => p.id === 'p27-01') || PORTFOLIO_ITEMS[1],
     PORTFOLIO_ITEMS.find((p) => p.id === 'p29-01') || PORTFOLIO_ITEMS[2],
     PORTFOLIO_ITEMS.find((p) => p.id === 'p28-01') || PORTFOLIO_ITEMS[3],
+    PORTFOLIO_ITEMS.find((p) => p.id === 'p31-01') || PORTFOLIO_ITEMS[16],
     PORTFOLIO_ITEMS.find((p) => p.id === 'p30-02') || PORTFOLIO_ITEMS[4],
   ].filter(Boolean);
 
@@ -162,9 +164,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-800 text-[13px] text-slate-400">
                   <span className="font-semibold text-cyan-300 flex items-center gap-1.5">
                     <HardHat className="w-4 h-4" />
-                    <span>Dokumentasi Fizikal Tapak Kerja</span>
+                    <span>Galeri Kerja & Ilustrasi</span>
                   </span>
-                  <span>{PORTFOLIO_ITEMS.length} Rekod Foto</span>
+                  <span>{PORTFOLIO_ITEMS.length} Imej Portfolio</span>
                 </div>
 
                 {/* 2x2 Showcase of modest real-photo cards (contain rather than crop) */}
@@ -203,7 +205,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                     onClick={() => onNavigate('/portfolio')}
                     className="text-[14px] text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 font-medium transition-colors"
                   >
-                    <span>Terokai keseluruhan {PORTFOLIO_ITEMS.length} foto projek mengikut kategori</span>
+                    <span>Terokai keseluruhan {PORTFOLIO_ITEMS.length} imej portfolio mengikut kategori</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -299,10 +301,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 Galeri Tapak
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight font-['Space_Grotesk'] mt-2">
-                Dokumentasi Projek Terpilih
+                Portfolio Terpilih
               </h2>
               <p className="text-[17px] text-slate-300 mt-1 max-w-xl">
-                Paparan rekod kerja pembinaan fizikal dari portfolio sebenar syarikat (nisbah aspek dikekalkan sepenuhnya).
+                Pilihan imej portfolio dan ilustrasi AI. Imej berlabel “Ilustrasi AI” bukan foto tapak sebenar; foto asal boleh dilihat dalam portfolio.
               </p>
             </div>
 
@@ -310,7 +312,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
               onClick={() => onNavigate('/portfolio')}
               className="min-h-[48px] px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-white font-semibold text-[16px] border border-slate-700 inline-flex items-center gap-2 self-start md:self-auto transition-colors"
             >
-              <span>Lihat Semua {PORTFOLIO_ITEMS.length} Foto</span>
+              <span>Lihat Semua {PORTFOLIO_ITEMS.length} Imej</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -339,6 +341,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 </div>
 
                 <div className="pt-3 px-1">
+                  {item.imageProvenance === 'ai-generated' && <div className="mb-2"><IllustrationBadge /></div>}
                   <div className="flex items-center justify-between text-[13px] mb-1">
                     <span className="font-bold text-cyan-300">{item.category}</span>
                     <span className="font-mono text-slate-400 text-[12px]">{item.filename}</span>

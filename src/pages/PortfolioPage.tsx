@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { PortfolioItem } from '../types';
 import { PORTFOLIO_ITEMS, RECORDED_PROJECTS, getFallbackPhoto } from '../data/portfolioData';
 import { Lightbox } from '../components/Lightbox';
+import { IllustrationBadge } from '../components/IllustrationBadge';
 import { MapPin, Info, Image as ImageIcon, ZoomIn } from 'lucide-react';
 
 type FilterCategory = 'Semua' | 'Saliran' | 'Rumah' | 'Slab Gas' | 'Jambatan' | 'Pam/Blower/STP';
@@ -53,20 +54,20 @@ export const PortfolioPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
             <span className="px-3.5 py-1.5 rounded-full bg-cyan-950 border border-cyan-500/30 text-cyan-300 text-[14px] font-semibold tracking-wider uppercase">
-              Arkib Dokumentasi Fizikal
+              Galeri Portfolio & Ilustrasi
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight font-['Space_Grotesk']">
               Portfolio Project
             </h1>
             <p className="text-[18px] lg:text-[20px] text-slate-300 leading-[1.6]">
-              Dokumentasi visual kerja-kerja pembinaan, perparitan, papak saluran gas, struktur jejambat jambatan dan penyelenggaraan sistem mekanikal loji kumbahan.
+              Galeri imej dan ilustrasi kerja pembinaan, perparitan, papak saluran gas, struktur jambatan dan sistem mekanikal.
             </p>
 
             <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-[14px] text-slate-300 flex items-start gap-3">
               <Info className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
               <div>
-                <strong className="text-white block">Ketelusan Kapsyen Tapak:</strong>
-                Selaras dengan piawaian integriti data, foto-foto dokumentasi tapak ini tidak dilabelkan dengan nama klien atau lokasi khusus melainkan apa yang telah didokumentasikan dalam rekod fizikal rasmi.
+                <strong className="text-white block">Ketelusan Imej:</strong>
+                Imej berlabel “Ilustrasi AI” ialah visual janaan AI, bukan foto dokumentasi tapak sebenar. Foto asal tersedia melalui pautan dalam paparan penuh. Tiada imej dipadankan dengan klien atau lokasi tanpa rekod rasmi.
               </div>
             </div>
           </div>
@@ -146,14 +147,14 @@ export const PortfolioPage: React.FC = () => {
           {/* Results Count & Lightbox Hint */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-slate-800/80 text-[15px] text-slate-400">
             <div>
-              Menunjukkan <strong className="text-white">{filteredItems.length}</strong> foto tapak pembinaan bagi kategori{' '}
+              Menunjukkan <strong className="text-white">{filteredItems.length}</strong> imej portfolio bagi kategori{' '}
               <span className="text-cyan-300 font-semibold">"{selectedCategory}"</span>
             </div>
 
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-[13px] font-medium">
                 <ImageIcon className="w-4 h-4 text-cyan-400" />
-                <span>Dokumentasi Fotografi Fizikal</span>
+                <span>Foto & Ilustrasi Berlabel</span>
               </span>
 
               <div className="hidden lg:flex items-center gap-1.5 text-[13px] text-slate-400">
@@ -178,7 +179,7 @@ export const PortfolioPage: React.FC = () => {
                   }
                 }}
                 className="group relative cursor-pointer rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/60 p-3 flex flex-col justify-between transition-all duration-200 shadow-md hover:shadow-xl hover:shadow-cyan-950/20 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
-                aria-label={`Buka foto ${item.filename} kategori ${item.category}`}
+                aria-label={`Buka ${item.imageProvenance === 'ai-generated' ? 'ilustrasi AI' : 'imej'} ${item.id} kategori ${item.category}`}
               >
                 {/* Image Box */}
                 <div className="relative aspect-[4/3] w-full rounded-xl bg-slate-950 overflow-hidden flex items-center justify-center">
@@ -209,6 +210,7 @@ export const PortfolioPage: React.FC = () => {
 
                 {/* Card Meta */}
                 <div className="pt-3 px-1">
+                  {item.imageProvenance === 'ai-generated' && <div className="mb-2"><IllustrationBadge /></div>}
                   <div className="flex items-center justify-between text-[12px] mb-1">
                     <span className="font-bold text-cyan-300 uppercase tracking-wider">
                       {item.category}

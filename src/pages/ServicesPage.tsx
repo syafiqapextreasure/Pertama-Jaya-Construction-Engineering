@@ -2,7 +2,8 @@ import React from 'react';
 import { RoutePath } from '../types';
 import { SERVICES_DATA } from '../data/servicesData';
 import { SITE_CONFIG } from '../config/site';
-import { getFallbackPhoto } from '../data/portfolioData';
+import { getFallbackPhoto, PORTFOLIO_ITEMS } from '../data/portfolioData';
+import { IllustrationBadge } from '../components/IllustrationBadge';
 import { CheckCircle, ArrowRight, Phone, MessageSquare, Info } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -112,13 +113,16 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 {/* Matching Photos Showcase (Contain rather than crop, 5 cols) */}
                 <div className="lg:col-span-5 space-y-3">
                   <div className="text-[13px] font-semibold text-slate-400 uppercase tracking-wider">
-                    Foto Tapak Berkaitan (Portfolio Fizikal):
+                    Imej Portfolio Berkaitan:
                   </div>
 
                   {service.sampleImages.length > 0 ? (
                     <>
                       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
-                        {service.sampleImages.map((imgPath, imgIdx) => (
+                        {service.sampleImages.map((imgPath, imgIdx) => {
+                          const portfolioItem = PORTFOLIO_ITEMS.find((item) => item.photoUrl === imgPath);
+                          const isGenerated = portfolioItem?.imageProvenance === 'ai-generated';
+                          return (
                           <div
                             key={imgIdx}
                             className="rounded-xl bg-slate-950 border border-slate-800 p-2 overflow-hidden"
@@ -126,7 +130,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                             <div className="aspect-[16/10] w-full rounded bg-slate-900 overflow-hidden flex items-center justify-center">
                               <img
                                 src={imgPath}
-                                alt={`Dokumentasi tapak bagi ${service.title} (${imgIdx + 1})`}
+                                alt={portfolioItem?.altText || `Imej portfolio bagi ${service.title} (${imgIdx + 1})`}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 loading="lazy"
                                 referrerPolicy="no-referrer"
@@ -140,14 +144,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                             </div>
                             <div className="mt-1.5 px-1 flex items-center justify-between text-[12px] text-slate-400 font-mono">
                               <span>{imgPath.split('/').pop()}</span>
-                              <span className="text-cyan-400">Rekod Tapak</span>
+                              {isGenerated ? <IllustrationBadge /> : <span className="text-cyan-400">Imej Portfolio</span>}
                             </div>
                           </div>
-                        ))}
+                        );})}
                       </div>
 
                       <p className="text-[12px] text-slate-400 italic">
-                        *Imej mengekalkan perkadaran nisbah aspek sebenar tanpa pemotongan (contain).
+                        *Imej berlabel “Ilustrasi AI” bukan foto tapak sebenar. Foto asal boleh dilihat dalam paparan penuh di halaman portfolio.
                       </p>
                     </>
                   ) : (

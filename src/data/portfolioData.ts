@@ -67,9 +67,14 @@ export const getCategoryShowcasePhoto = (category: string, id?: string): string 
   return itemByCategory ? itemByCategory.relPath : getFallbackPhoto(category);
 };
 
+// AI replacements are display assets only; source JPEGs and attachment metadata stay intact.
+const GENERATED_DISPLAY_IDS = new Set(['p28-02', 'p28-03', 'p28-04', 'p31-01', 'p31-02', 'p31-03']);
+
 export const PORTFOLIO_ITEMS: PortfolioItem[] = RAW_PORTFOLIO_ITEMS.map((item) => ({
   ...item,
-  photoUrl: item.relPath,
+  photoUrl: GENERATED_DISPLAY_IDS.has(item.id) ? `/assets/portfolio/generated/${item.id}.webp` : item.relPath,
+  imageProvenance: GENERATED_DISPLAY_IDS.has(item.id) ? 'ai-generated' : undefined,
+  altText: GENERATED_DISPLAY_IDS.has(item.id) ? `Ilustrasi AI: ${item.altText}` : item.altText,
 }));
 
 /**

@@ -106,9 +106,9 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Pemeriksaan dan servis menara penyejuk industri (cooling tower)'
     ],
     sampleImages: [
-      '/assets/portfolio/pumps-blowers-stp/p31-03.jpg',
-      '/assets/portfolio/pumps-blowers-stp/p31-02.jpg',
-      '/assets/portfolio/pumps-blowers-stp/p31-01.jpg'
+      '/assets/portfolio/generated/p31-03.webp',
+      '/assets/portfolio/generated/p31-02.webp',
+      '/assets/portfolio/generated/p31-01.webp'
     ]
   }
 ];
