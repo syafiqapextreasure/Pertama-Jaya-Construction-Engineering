@@ -89,7 +89,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Pemasangan kerangka tingkap, pintu dan kerja lepaan simen'
     ],
     sampleImages: [
-      '/assets/portfolio/housing/p28-01.jpg'
+      '/assets/portfolio/generated/p28-04.webp'
     ]
   },
   {

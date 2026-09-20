@@ -34,4 +34,8 @@ const mechanical = SERVICES_DATA.find((service) => service.id === 'pam-blower-st
 assert.ok(mechanical.sampleImages.every((src) => src.startsWith('/assets/portfolio/generated/')));
 const services = renderToStaticMarkup(<ServicesPage onNavigate={() => {}} onOpenWhatsApp={() => {}} />);
 assert.ok(services.includes('Ilustrasi AI'));
+const construction = SERVICES_DATA.find((service) => service.id === 'pembinaan-bangunan')!;
+const renovation = SERVICES_DATA.find((service) => service.id === 'ubah-suai-rumah')!;
+assert.notEqual(construction.sampleImages[0], renovation.sampleImages[0], 'Construction and renovation must have distinct service images');
+assert.equal(renovation.sampleImages[0], '/assets/portfolio/generated/p28-04.webp');
 console.log('Portfolio display/provenance regression checks passed.');
