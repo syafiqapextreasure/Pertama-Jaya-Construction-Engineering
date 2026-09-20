@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RoutePath } from '../types';
 import { SITE_CONFIG } from '../config/site';
-import { BrandWordmark } from './BrandWordmark';
 import { Menu, X, MessageSquare, Phone, ChevronRight } from 'lucide-react';
 
 interface HeaderProps {
@@ -42,24 +41,18 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenW
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 sm:h-24">
           
-          {/* Logo & Company Identity - Screenshot 1, 2 & 4: transparent emblem + 2-row original reference text style */}
+          {/* Logo & Company Identity */}
           <button
             onClick={() => handleNavClick('/')}
-            className="flex items-center gap-3 text-left focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none rounded-lg p-1 transition-opacity hover:opacity-95"
+            className="flex items-center text-left focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none rounded-lg p-1 transition-opacity hover:opacity-95"
             aria-label="Kembali ke Laman Utama Pertama Jaya Construction & Engineering"
           >
-            {/* Transparent Logo Emblem from user reference */}
-            <div className="relative w-12 h-12 sm:w-14 sm:h-14 flex-shrink-0 flex items-center justify-center">
-              <img
-                src="/assets/logo/Pertama-Jaya-Logo.svg"
-                alt="Logo Rasmi Pertama Jaya Construction & Engineering Sdn Bhd"
-                className="w-full h-full object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
-                loading="eager"
-              />
-            </div>
-            
-            {/* Logo Label SVG from user reference */}
-            <BrandWordmark size="md" />
+            <img
+              src={SITE_CONFIG.logoPath}
+              alt="Logo Rasmi Pertama Jaya Construction & Engineering Sdn Bhd"
+              className="h-12 sm:h-16 lg:h-20 w-auto max-w-[58vw] md:max-w-[360px] lg:max-w-[460px] object-contain filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+              loading="eager"
+            />
           </button>
 
           {/* Desktop Navigation */}

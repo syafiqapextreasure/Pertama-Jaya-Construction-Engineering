@@ -1,4 +1,5 @@
 import React from 'react';
+import { SITE_CONFIG } from '../config/site';
 
 interface BrandWordmarkProps {
   size?: 'sm' | 'md' | 'lg';
@@ -19,7 +20,7 @@ export const BrandWordmark: React.FC<BrandWordmarkProps> = ({
   return (
     <div className={`flex items-center select-none ${className}`}>
       <img
-        src="/assets/logo/Pertama-Jaya-Label.svg"
+        src={SITE_CONFIG.labelPath}
         alt="Pertama Jaya Construction & Engineering Sdn Bhd"
         className={`w-auto ${heightClass} object-contain`}
         loading="eager"

@@ -1,7 +1,6 @@
 import React from 'react';
 import { RoutePath } from '../types';
 import { SITE_CONFIG } from '../config/site';
-import { BrandWordmark } from './BrandWordmark';
 import { Phone, Mail, MapPin, ArrowUpRight } from 'lucide-react';
 
 interface FooterProps {
@@ -19,16 +18,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenAudit }) => {
           
           {/* Column 1: Company Profile & Logo */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 flex items-center justify-center flex-shrink-0">
-                <img
-                  src="/assets/logo/Pertama-Jaya-Logo.svg"
-                  alt="Logo Rasmi Pertama Jaya Construction & Engineering Sdn Bhd"
-                  className="w-full h-full object-contain filter drop-shadow-md"
-                  loading="lazy"
-                />
-              </div>
-              <BrandWordmark size="sm" />
+            <div className="flex items-center">
+              <img
+                src={SITE_CONFIG.logoPath}
+                alt="Logo Rasmi Pertama Jaya Construction & Engineering Sdn Bhd"
+                className="h-16 sm:h-20 w-auto max-w-full object-contain filter drop-shadow-md"
+                loading="lazy"
+              />
             </div>
 
             <p className="text-[15px] sm:text-[16px] text-slate-400 leading-relaxed">

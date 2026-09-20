@@ -34,8 +34,8 @@ export const SITE_CONFIG = {
   serviceAreaDisclaimer: "Ketersediaan servis mengikut lokasi dan skop projek. Hubungi kami untuk pengesahan.",
   
   // Aset logo & label rasmi (fail SVG asal)
-  logoPath: "/assets/logo/Pertama-Jaya-Logo.svg",
-  labelPath: "/assets/logo/Pertama-Jaya-Label.svg",
+  logoPath: "/assets/logo/pertama-jaya-header-cyan-white.png",
+  labelPath: "/assets/logo/pertama-jaya-header-cyan-white.png",
   
   // Rekod cawangan yang disenaraikan dalam profil
   branches: [
