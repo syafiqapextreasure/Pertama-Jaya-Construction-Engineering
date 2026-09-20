@@ -51,9 +51,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
     PORTFOLIO_ITEMS.find((p) => p.id === 'p27-01') || PORTFOLIO_ITEMS[1],
     PORTFOLIO_ITEMS.find((p) => p.id === 'p29-01') || PORTFOLIO_ITEMS[2],
     PORTFOLIO_ITEMS.find((p) => p.id === 'p28-01') || PORTFOLIO_ITEMS[3],
-    PORTFOLIO_ITEMS.find((p) => p.id === 'p31-01') || PORTFOLIO_ITEMS[4],
-    PORTFOLIO_ITEMS.find((p) => p.id === 'p30-02') || PORTFOLIO_ITEMS[5],
-  ];
+    PORTFOLIO_ITEMS.find((p) => p.id === 'p30-02') || PORTFOLIO_ITEMS[4],
+  ].filter(Boolean);
 
   return (
     <div className="w-full">

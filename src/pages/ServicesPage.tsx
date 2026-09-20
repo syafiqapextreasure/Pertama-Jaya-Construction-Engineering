@@ -115,38 +115,46 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                     Foto Tapak Berkaitan (Portfolio Fizikal):
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
-                    {service.sampleImages.map((imgPath, imgIdx) => (
-                      <div
-                        key={imgIdx}
-                        className="rounded-xl bg-slate-950 border border-slate-800 p-2 overflow-hidden"
-                      >
-                        <div className="aspect-[16/10] w-full rounded bg-slate-900 overflow-hidden flex items-center justify-center">
-                          <img
-                            src={imgPath}
-                            alt={`Dokumentasi tapak bagi ${service.title} (${imgIdx + 1})`}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            loading="lazy"
-                            referrerPolicy="no-referrer"
-                            onError={(e) => {
-                              const fallback = getFallbackPhoto(service.category);
-                              if (e.currentTarget.src !== fallback && !e.currentTarget.src.endsWith(fallback)) {
-                                e.currentTarget.src = fallback;
-                              }
-                            }}
-                          />
-                        </div>
-                        <div className="mt-1.5 px-1 flex items-center justify-between text-[12px] text-slate-400 font-mono">
-                          <span>{imgPath.split('/').pop()}</span>
-                          <span className="text-cyan-400">Rekod Tapak</span>
-                        </div>
+                  {service.sampleImages.length > 0 ? (
+                    <>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
+                        {service.sampleImages.map((imgPath, imgIdx) => (
+                          <div
+                            key={imgIdx}
+                            className="rounded-xl bg-slate-950 border border-slate-800 p-2 overflow-hidden"
+                          >
+                            <div className="aspect-[16/10] w-full rounded bg-slate-900 overflow-hidden flex items-center justify-center">
+                              <img
+                                src={imgPath}
+                                alt={`Dokumentasi tapak bagi ${service.title} (${imgIdx + 1})`}
+                                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                loading="lazy"
+                                referrerPolicy="no-referrer"
+                                onError={(e) => {
+                                  const fallback = getFallbackPhoto(service.category);
+                                  if (e.currentTarget.src !== fallback && !e.currentTarget.src.endsWith(fallback)) {
+                                    e.currentTarget.src = fallback;
+                                  }
+                                }}
+                              />
+                            </div>
+                            <div className="mt-1.5 px-1 flex items-center justify-between text-[12px] text-slate-400 font-mono">
+                              <span>{imgPath.split('/').pop()}</span>
+                              <span className="text-cyan-400">Rekod Tapak</span>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
 
-                  <p className="text-[12px] text-slate-400 italic">
-                    *Imej mengekalkan perkadaran nisbah aspek sebenar tanpa pemotongan (contain).
-                  </p>
+                      <p className="text-[12px] text-slate-400 italic">
+                        *Imej mengekalkan perkadaran nisbah aspek sebenar tanpa pemotongan (contain).
+                      </p>
+                    </>
+                  ) : (
+                    <div className="rounded-xl bg-slate-950 border border-dashed border-slate-700 p-4 text-[14px] text-slate-400 leading-relaxed">
+                      Foto tapak untuk kategori ini belum dimuat naik ke laman web. Hubungi pejabat untuk rujukan projek berkaitan.
+                    </div>
+                  )}
                 </div>
 
               </div>

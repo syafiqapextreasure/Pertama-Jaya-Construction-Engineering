@@ -15,9 +15,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Pemasangan kekuda keluli bumbung dan sistem perpaipan asas'
     ],
     sampleImages: [
-      '/assets/portfolio/housing/p28-01.jpg',
-      '/assets/portfolio/housing/p28-02.jpg',
-      '/assets/portfolio/housing/p28-03.jpg'
+      '/assets/portfolio/housing/p28-01.jpg'
     ]
   },
   {
@@ -91,9 +89,7 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Pemasangan kerangka tingkap, pintu dan kerja lepaan simen'
     ],
     sampleImages: [
-      '/assets/portfolio/housing/p28-02.jpg',
-      '/assets/portfolio/housing/p28-03.jpg',
-      '/assets/portfolio/housing/p28-04.jpg'
+      '/assets/portfolio/housing/p28-01.jpg'
     ]
   },
   {
@@ -109,10 +105,6 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Penyelenggaraan tangki pengudaraan aerasi dan paip peresap (diffusers)',
       'Pemeriksaan dan servis menara penyejuk industri (cooling tower)'
     ],
-    sampleImages: [
-      '/assets/portfolio/pumps-blowers-stp/p31-01.jpg',
-      '/assets/portfolio/pumps-blowers-stp/p31-02.jpg',
-      '/assets/portfolio/pumps-blowers-stp/p31-03.jpg'
-    ]
+    sampleImages: []
   }
 ];
