@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Netlify-only SPA fallback. Do not put this in public/_redirects:
+# Cloudflare Workers rejects the catch-all as an infinite redirect loop.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
