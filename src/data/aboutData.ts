@@ -20,7 +20,7 @@ export const ABOUT_COMPANY_INFO = {
   emelProfil: 'pertamajayasdnbhd@gmail.com',
   lokasiProfil: ['Melaka', 'Johor Bahru', 'Permatang Pauh'],
   modalBerbayarProfil: 'RM 750,000.00 (seperti dinyatakan dalam dokumen profil syarikat, tertakluk kepada pengesahan rekod rasmi terkini)',
-  pengasasPeneraju: 'Jayabalan A/L Santhiran',
+  pengasasPeneraju: 'James',
   jawatanPeneraju: 'Peneraju Syarikat',
   pemerbadananTimeline: [
     {
@@ -139,12 +139,12 @@ export const VISION_STATEMENT =
 
 /**
  * Data Kepimpinan & Struktur Carta Organisasi
- * Sumber: PDF mengenal pasti Jayabalan A/L Santhiran sebagai peneraju syarikat.
+ * Sumber: PDF mengenal pasti James sebagai peneraju syarikat.
  * Carta organisasi penuh ditangguhkan sehingga senarai hierarki rasmi disahkan oleh pemilik.
  */
 export const LEADERSHIP_DATA = {
   peneraju: {
-    nama: 'Jayabalan A/L Santhiran',
+    nama: 'James',
     jawatan: 'Peneraju Syarikat',
     statusSumber: 'Tercatat dalam profil syarikat sebagai pengurus / peneraju pengurusan'
   },
@@ -152,7 +152,7 @@ export const LEADERSHIP_DATA = {
   orgStructureTemplate: {
     id: 'root-leader',
     title: 'Peneraju Syarikat / Pengarah Urusan',
-    personName: 'Jayabalan A/L Santhiran',
+    personName: 'James',
     department: 'Pengurusan Tertinggi',
     status: 'confirmed',
     children: [

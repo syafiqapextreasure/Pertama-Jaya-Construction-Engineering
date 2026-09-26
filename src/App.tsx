@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLanguage } from './i18n';
 import { RoutePath } from './types';
 import { SITE_CONFIG } from './config/site';
 import { Header } from './components/Header';
@@ -40,43 +41,18 @@ export function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Update Page Title and Meta Tags dynamically per route
-  useEffect(() => {
-    let pageTitle = SITE_CONFIG.companyName;
-    let pageDesc = 'Penyelesaian Pembinaan & Kejuruteraan untuk Projek Anda.';
-
-    switch (currentPath) {
-      case '/':
-        pageTitle = `${SITE_CONFIG.shortName} | Kontraktor Pembinaan & Kejuruteraan Awam`;
-        pageDesc = 'Laman rasmi Pertama Jaya Construction & Engineering Sdn Bhd (1411274-D). Pembinaan bangunan, jambatan, saliran dan loji STP.';
-        break;
-      case '/servis':
-        pageTitle = `Perkhidmatan Kami | ${SITE_CONFIG.shortName}`;
-        pageDesc = 'Skop kerja pembinaan rumah/kilang, jambatan, saliran pembetungan, slab gas, ubah suai dan servis loji kumbahan.';
-        break;
-      case '/portfolio':
-        pageTitle = `Portfolio Project | ${SITE_CONFIG.shortName}`;
-        pageDesc = 'Galeri foto dokumentasi tapak pembinaan dan senarai rekod projek Pertama Jaya Construction & Engineering.';
-        break;
-      case '/hubungi':
-        pageTitle = `Hubungi Pejabat & Sebutharga | ${SITE_CONFIG.shortName}`;
-        pageDesc = 'Hubungi talian pejabat +606-270 0490 atau kirimkan pertanyaan sebutharga projek anda kepada Pertama Jaya.';
-        break;
-      case '/tentang-kami':
-        pageTitle = `Tentang Kami | ${SITE_CONFIG.shortName}`;
-        pageDesc = 'Pengenalan Pertama Jaya Construction & Engineering Sdn Bhd (1411274-D), objektif korporat, falsafah syarikat, misi, visi dan kepimpinan.';
-        break;
-      default:
-        pageTitle = `404 Halaman Tidak Dijumpai | ${SITE_CONFIG.shortName}`;
-        break;
-    }
-
-    document.title = pageTitle;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', pageDesc);
-    }
-  }, [currentPath]);
+  // React 19 hoists these metadata elements into <head> and updates them on language/route changes.
+  const { t } = useLanguage();
+  const metadata = {
+    '/': ['Kontraktor Pembinaan & Kejuruteraan Awam', 'Laman rasmi Pertama Jaya Construction & Engineering Sdn Bhd (1411274-D). Pembinaan bangunan, jambatan, saliran dan loji STP.'],
+    '/servis': ['Perkhidmatan Kami', 'Skop kerja pembinaan rumah/kilang, jambatan, saliran pembetungan, slab gas, ubah suai dan servis loji kumbahan.'],
+    '/portfolio': ['Portfolio Project', 'Galeri foto dokumentasi tapak pembinaan dan senarai rekod projek Pertama Jaya Construction & Engineering.'],
+    '/hubungi': ['Hubungi Pejabat & Sebutharga', 'Hubungi James di +60 12-434 2290 atau talian pejabat +60 6-270 0490 untuk pertanyaan sebutharga projek anda kepada Pertama Jaya.'],
+    '/tentang-kami': ['Tentang Kami', 'Pengenalan Pertama Jaya Construction & Engineering Sdn Bhd (1411274-D), objektif korporat, falsafah syarikat, misi, visi dan kepimpinan.'],
+    '404': ['404 Halaman Tidak Dijumpai', 'Penyelesaian Pembinaan & Kejuruteraan untuk Projek Anda.'],
+  }[currentPath];
+  const pageTitle = `${t(metadata[0])} | ${SITE_CONFIG.shortName}`;
+  const pageDesc = t(metadata[1]);
 
   // Navigate function with smooth scroll to top
   const handleNavigate = (path: RoutePath) => {
@@ -94,6 +70,10 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-cyan-500/30 selection:text-cyan-200">
+      <title>{pageTitle}</title>
+      <meta name="description" content={pageDesc} />
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:description" content={pageDesc} />
       
       {/* Shared Header */}
       <Header
@@ -147,7 +127,7 @@ export function App() {
         onNavigateToContact={() => handleNavigate('/hubungi')}
       />
 
-      {/* WhatsApp Notice Modal (Handles both configured & unconfigured states) */}
+      {/* Confirm the message before opening the configured WhatsApp channel. */}
       <WhatsAppNoticeModal
         isOpen={whatsAppModalOpen}
         onClose={() => setWhatsAppModalOpen(false)}

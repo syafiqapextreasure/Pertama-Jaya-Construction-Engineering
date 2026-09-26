@@ -1,4 +1,7 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React from 'react';
+import { useLanguage } from '../i18n';
 import { RoutePath } from '../types';
 import { SITE_CONFIG } from '../config/site';
 import {
@@ -37,11 +40,13 @@ interface AboutPageProps {
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp }) => {
+  const { t: translateOutput } = useRenderLanguage();
+  const { t, language } = useLanguage();
   const publishedAchievements = ACHIEVEMENTS_DATA.filter((item) => item.isPublished);
   const unpublishedCount = ACHIEVEMENTS_DATA.filter((item) => !item.isPublished).length;
 
-  return (
-    <div className="w-full pb-20">
+  return localizeTree((
+    <div className="w-full pb-20" lang={language === 'zh' ? 'zh-Hans' : language}>
       
       {/* Header Banner */}
       <section className="relative py-14 sm:py-18 bg-gradient-to-b from-slate-950 via-[#071329] to-slate-950 border-b border-slate-800/80">
@@ -78,10 +83,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
 
               <div className="space-y-4 text-[18px] text-slate-300 leading-[1.7]">
                 <p>
-                  <strong className="text-white">Pertama Jaya Construction & Engineering Sdn Bhd</strong> merupakan sebuah syarikat pembinaan dan kejuruteraan awam yang diterajui oleh <strong className="text-white">Jayabalan A/L Santhiran</strong>, berdaftar secara rasmi di Suruhanjaya Syarikat Malaysia (SSM).
+                  {t('Pertama Jaya Construction & Engineering Sdn Bhd merupakan sebuah syarikat pembinaan dan kejuruteraan awam yang diterajui oleh James, berdaftar secara rasmi di Suruhanjaya Syarikat Malaysia (SSM).')}
                 </p>
                 <p>
-                  Operasi perniagaan ini bermula sebagai sebuah entiti perniagaan <strong className="text-cyan-300">Enterprise pada tahun 2010</strong> dan kemudiannya berkembang pesat sehingga dinaik taraf dan ditukar status kepada <strong className="text-cyan-300">Sendirian Berhad (Sdn Bhd) pada tahun 2021</strong> menurut dokumen profil syarikat.
+                  {t('Operasi perniagaan ini bermula sebagai sebuah entiti perniagaan Enterprise pada tahun 2010 dan kemudiannya berkembang pesat sehingga dinaik taraf dan ditukar status kepada Sendirian Berhad (Sdn Bhd) pada tahun 2021 menurut dokumen profil syarikat.')}
                 </p>
                 <p>
                   Dokumen profil syarikat mencatatkan pengalaman terkumpul melebihi 11 tahun dalam pelaksanaan pelbagai jenis projek pembinaan dan kejuruteraan. Di bawah kepimpinan pengurus syarikat, Pertama Jaya terus memegang kredibiliti teguh dalam mengurus dan mengendalikan kerja-kerja pembinaan yang diamanahkan oleh pihak berwajib, menyemai keupayaan teknikal tempatan serta menyumbang secara positif kepada kemajuan pembangunan negara.
@@ -102,7 +107,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
                     >
                       <div className="flex items-center gap-2.5 text-cyan-400 font-bold text-[20px] mb-1.5 font-['Space_Grotesk']">
                         <Calendar className="w-5 h-5" />
-                        <span>Tahun {tl.tahun}</span>
+                        <span>{t('Tahun {year}').replace('{year}', tl.tahun)}</span>
                       </div>
                       <h4 className="text-[17px] font-semibold text-white mb-2">
                         {tl.status}
@@ -145,7 +150,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
                 <div className="pt-4 border-t border-slate-800 text-[15px] text-slate-300 space-y-2">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                    <span>Diterajui: {ABOUT_COMPANY_INFO.pengasasPeneraju}</span>
+                    <span>{t('Diterajui: {name}').replace('{name}', 'James')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-cyan-400" />
@@ -426,7 +431,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-[13px] font-mono font-bold text-cyan-400 bg-cyan-950 px-2.5 py-1 rounded border border-cyan-500/30">
-                      Tiang {mis.number}
+                      {t('Tiang {number}').replace('{number}', mis.number)}
                     </span>
                     <Compass className="w-5 h-5 text-slate-500" />
                   </div>
@@ -489,7 +494,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Leadership Card (Jayabalan A/L Santhiran) */}
+            {/* Leadership Card (James) */}
             <div className="lg:col-span-6">
               <div className="p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-xl space-y-6">
                 <div className="flex items-center gap-4">
@@ -501,19 +506,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
                       {LEADERSHIP_DATA.peneraju.jawatan}
                     </span>
                     <h3 className="text-2xl font-bold text-white font-['Space_Grotesk']">
-                      {LEADERSHIP_DATA.peneraju.nama}
+                      James
                     </h3>
                   </div>
                 </div>
 
                 <p className="text-[17px] text-slate-300 leading-relaxed">
-                  Berdasarkan dokumen profil syarikat, Encik Jayabalan A/L Santhiran menerajui pengurusan operasi pembinaan dan kejuruteraan Pertama Jaya. Di bawah bimbingan beliau, syarikat telah melaksanakan pelbagai projek pembinaan, saliran dan mekanikal di pelbagai negeri semenanjung Malaysia.
+                  {t('Berdasarkan dokumen profil syarikat, Encik James menerajui pengurusan operasi pembinaan dan kejuruteraan Pertama Jaya. Di bawah bimbingan beliau, syarikat telah melaksanakan pelbagai projek pembinaan, saliran dan mekanikal di pelbagai negeri semenanjung Malaysia.')}
                 </p>
 
                 <div className="p-4 rounded-xl bg-slate-950 border border-slate-800 text-[14px] text-slate-400 leading-normal flex items-start gap-2.5">
                   <ShieldCheck className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
                   <span>
-                    Status Sumber: {LEADERSHIP_DATA.peneraju.statusSumber}. Tiada gambar potret rekaan atau biografi tambahan ditambah tanpa pengesahan sumber rasmi.
+                    {t('Status Sumber: {source}. Tiada gambar potret rekaan atau biografi tambahan ditambah tanpa pengesahan sumber rasmi.').replace('{source}', t(LEADERSHIP_DATA.peneraju.statusSumber))}
                   </span>
                 </div>
               </div>
@@ -543,7 +548,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
                     <span className="font-mono text-cyan-400">Siap Sedia (Editable JSON)</span>
                   </div>
                   <div className="text-slate-400 space-y-1">
-                    <div>• Peneraju: <span className="text-slate-200">Jayabalan A/L Santhiran</span> (Disahkan)</div>
+                    <div>{t('• Peneraju: James (Disahkan)')}</div>
                     <div>• Jabatan Operasi & HSE: <span className="text-amber-300/90">Menunggu data nama kakitangan rasmi</span></div>
                     <div>• Bahagian Kejuruteraan & STP: <span className="text-amber-300/90">Menunggu carta jawatan rasmi</span></div>
                   </div>
@@ -664,5 +669,5 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenWhatsApp
       </section>
 
     </div>
-  );
+  ), translateOutput);
 };

@@ -1,3 +1,5 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React from 'react';
 import { RoutePath } from '../types';
 import { HardHat, ArrowLeft, Home } from 'lucide-react';
@@ -7,7 +9,8 @@ interface NotFoundPageProps {
 }
 
 export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
-  return (
+  const { t: translateOutput } = useRenderLanguage();
+  return localizeTree((
     <div className="w-full min-h-[70vh] flex items-center justify-center py-20 px-4">
       <div className="max-w-md w-full text-center p-8 rounded-3xl bg-slate-900 border border-slate-800 shadow-2xl space-y-6">
         
@@ -45,5 +48,5 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
 
       </div>
     </div>
-  );
+  ), translateOutput);
 };

@@ -1,3 +1,5 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React, { useState, useMemo } from 'react';
 import { PortfolioItem } from '../types';
 import { PORTFOLIO_ITEMS, RECORDED_PROJECTS, getFallbackPhoto } from '../data/portfolioData';
@@ -8,6 +10,7 @@ import { MapPin, Info, Image as ImageIcon, ZoomIn } from 'lucide-react';
 type FilterCategory = 'Semua' | 'Saliran' | 'Rumah' | 'Slab Gas' | 'Jambatan' | 'Pam/Blower/STP';
 
 export const PortfolioPage: React.FC = () => {
+  const { t: translateOutput } = useRenderLanguage();
   const [selectedCategory, setSelectedCategory] = useState<FilterCategory>('Semua');
   const [activeLightboxIndex, setActiveLightboxIndex] = useState<number | null>(null);
 
@@ -46,7 +49,7 @@ export const PortfolioPage: React.FC = () => {
     { label: 'Pam/Blower/STP', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Pam/Blower/STP').length },
   ];
 
-  return (
+  return localizeTree((
     <div className="w-full pb-20">
       
       {/* Header Banner */}
@@ -239,5 +242,5 @@ export const PortfolioPage: React.FC = () => {
       />
 
     </div>
-  );
+  ), translateOutput);
 };

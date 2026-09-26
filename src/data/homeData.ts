@@ -46,7 +46,7 @@ export const FAQS_DATA: FaqItem[] = [
   },
   {
     question: 'Adakah talian telefon syarikat menyokong mesej WhatsApp terus?',
-    answer: 'Nombor rasmi yang tercatat dalam rekod pejabat (+6062700490) merupakan talian telefon tetap pejabat untuk panggilan suara terus. WhatsApp terus melalui butang hanya akan diaktifkan apabila nombor telefon bimbit rasmi yang sah disahkan oleh pihak pengurusan.'
+    answer: 'Ya. Hubungi James melalui WhatsApp di +60 12-434 2290. Talian tetap pejabat +60 6-270 0490 adalah untuk panggilan suara.'
   },
   {
     question: 'Bagaimanakah status pensijilan MOF syarikat?',

@@ -1,3 +1,5 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React from 'react';
 import { SITE_CONFIG } from '../config/site';
 
@@ -10,6 +12,7 @@ export const BrandWordmark: React.FC<BrandWordmarkProps> = ({
   size = 'md',
   className = '',
 }) => {
+  const { t: translateOutput } = useRenderLanguage();
   const heightClass =
     size === 'sm'
       ? 'h-8 sm:h-9'
@@ -17,7 +20,7 @@ export const BrandWordmark: React.FC<BrandWordmarkProps> = ({
       ? 'h-11 sm:h-14'
       : 'h-9 sm:h-11';
 
-  return (
+  return localizeTree((
     <div className={`flex items-center select-none ${className}`}>
       <img
         src={SITE_CONFIG.labelPath}
@@ -26,6 +29,6 @@ export const BrandWordmark: React.FC<BrandWordmarkProps> = ({
         loading="eager"
       />
     </div>
-  );
+  ), translateOutput);
 };
 

@@ -1,4 +1,7 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React from 'react';
+import { useLanguage } from '../i18n';
 import { RoutePath } from '../types';
 import { SERVICES_DATA } from '../data/servicesData';
 import { SITE_CONFIG } from '../config/site';
@@ -16,8 +19,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
   onNavigate,
   onOpenWhatsApp
 }) => {
-  return (
-    <div className="w-full pb-20">
+  const { t: translateOutput } = useRenderLanguage();
+  const { t, language } = useLanguage();
+  return localizeTree((
+    <div className="w-full pb-20" lang={language === 'zh' ? 'zh-Hans' : language}>
       
       {/* Header Banner */}
       <section className="relative py-14 sm:py-18 bg-gradient-to-b from-slate-950 via-[#071329] to-slate-950 border-b border-slate-800/80">
@@ -60,10 +65,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                 <div className="lg:col-span-7 space-y-5">
                   <div className="flex items-center gap-3">
                     <span className="px-3 py-1 rounded-md text-[13px] font-bold bg-cyan-950 text-cyan-300 border border-cyan-500/30">
-                      Servis 0{index + 1}
+                      {t('Servis {number}').replace('{number}', String(index + 1).padStart(2, '0'))}
                     </span>
                     <span className="text-[14px] text-slate-400 font-medium">
-                      Kategori: {service.category}
+                      {t('Kategori: {category}').replace('{category}', t(service.category))}
                     </span>
                   </div>
 
@@ -130,7 +135,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                             <div className="aspect-[16/10] w-full rounded bg-slate-900 overflow-hidden flex items-center justify-center">
                               <img
                                 src={imgPath}
-                                alt={portfolioItem?.altText || `Imej portfolio bagi ${service.title} (${imgIdx + 1})`}
+                                alt={portfolioItem?.altText ? t(portfolioItem.altText) : t('Imej portfolio bagi {service} ({number})').replace('{service}', t(service.title)).replace('{number}', String(imgIdx + 1))}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 loading="lazy"
                                 referrerPolicy="no-referrer"
@@ -182,7 +187,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               className="min-h-[48px] px-6 py-3 rounded-xl bg-slate-950 hover:bg-slate-800 text-white font-semibold text-[16px] border border-slate-700 inline-flex items-center gap-2"
             >
               <Phone className="w-5 h-5 text-cyan-400" />
-              <span>Hubungi Pejabat ({SITE_CONFIG.phoneDisplay})</span>
+              <span>{t('Hubungi Pejabat ({phone})').replace('{phone}', SITE_CONFIG.phoneDisplay)}</span>
             </a>
             <button
               onClick={() => onNavigate('/hubungi')}
@@ -196,5 +201,5 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       </section>
 
     </div>
-  );
+  ), translateOutput);
 };

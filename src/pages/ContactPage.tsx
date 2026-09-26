@@ -1,3 +1,5 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React, { useState } from 'react';
 import { SITE_CONFIG } from '../config/site';
 import { Phone, Mail, MapPin, Send, AlertCircle, CheckCircle2, MessageSquare } from 'lucide-react';
@@ -7,6 +9,7 @@ interface ContactPageProps {
 }
 
 export const ContactPage: React.FC<ContactPageProps> = ({ onOpenWhatsAppModal }) => {
+  const { t: translateOutput } = useRenderLanguage();
   const [formData, setFormData] = useState({
     nama: '',
     telefon: '',
@@ -40,14 +43,12 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenWhatsAppModal })
     }
     setErrors({});
 
-    const politeMalayMessage = `Salam Pertama Jaya Construction & Engineering Sdn Bhd.\n\nSaya ingin memohon sebutharga/perbincangan projek seperti butiran berikut:\n- Nama: ${formData.nama}\n- Telefon: ${formData.telefon}\n- Lokasi Projek: ${formData.lokasi}\n- Jenis Servis: ${formData.jenisServis}\n- Keterangan Skop:\n${formData.mesej}`;
+    const politeMalayMessage = `${translateOutput('Salam sejahtera Pertama Jaya Construction & Engineering Sdn Bhd. Saya ingin bertanyakan mengenai perkhidmatan dan anggaran sebutharga projek.')}\n\n${translateOutput('Nama Penuh')}: ${formData.nama}\n${translateOutput('Nombor Telefon')}: ${formData.telefon}\n${translateOutput('Lokasi Tapak Projek')}: ${formData.lokasi}\n${translateOutput('Jenis Servis Utama')}: ${translateOutput(formData.jenisServis)}\n${translateOutput('Keterangan Skop & Keperluan')}:\n${formData.mesej}`;
 
     const hasConfiguredWhatsApp = Boolean(SITE_CONFIG.WHATSAPP_NUMBER && SITE_CONFIG.WHATSAPP_NUMBER.trim() !== '');
 
     if (hasConfiguredWhatsApp) {
-      const cleanNumber = SITE_CONFIG.WHATSAPP_NUMBER.replace(/[^0-9]/g, '');
-      const url = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(politeMalayMessage)}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
+      onOpenWhatsAppModal(politeMalayMessage);
     } else {
       // Direct user to email draft or office phone options honestly without faking backend database storage
       onOpenWhatsAppModal(politeMalayMessage);
@@ -55,7 +56,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenWhatsAppModal })
     }
   };
 
-  return (
+  return localizeTree((
     <div className="w-full pb-20">
       
       {/* Header Banner */}
@@ -91,6 +92,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenWhatsAppModal })
                 </h2>
 
                 <div className="space-y-5">
+                  <div className="space-y-2">
+                    <span className="text-[13px] text-slate-400 block">Telefon Bimbit</span>
+                    <a href={`tel:${SITE_CONFIG.phoneMobile}`} className="text-[20px] font-bold text-cyan-300">{SITE_CONFIG.phoneMobileDisplay}</a>
+                    <p className="text-slate-300">James</p>
+                  </div>
                   {/* Phone Landline */}
                   <div className="flex items-start gap-4">
                     <div className="p-3 rounded-xl bg-cyan-950/80 border border-cyan-500/30 text-cyan-400">
@@ -353,5 +359,5 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onOpenWhatsAppModal })
       </section>
 
     </div>
-  );
+  ), translateOutput);
 };

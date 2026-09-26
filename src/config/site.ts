@@ -7,21 +7,18 @@ export const SITE_CONFIG = {
   companyName: "PERTAMA JAYA CONSTRUCTION & ENGINEERING SDN BHD",
   shortName: "Pertama Jaya Construction",
   registrationNumber: "1411274-D",
+  leaderName: "James",
   tagline: "Penyelesaian Pembinaan & Kejuruteraan untuk Projek Anda",
   
   // Hubungi
   phoneLandline: "+6062700490",
   phoneDisplay: "+60 6-270 0490",
+  phoneMobile: "+60124342290",
+  phoneMobileDisplay: "+60 12-434 2290",
   email: "pertamajayasdnbhd@gmail.com",
   
-  /**
-   * Konfigurasi WhatsApp:
-   * Pada mulanya dibiarkan kosong ("") kerana tiada nombor telefon bimbit WhatsApp
-   * rasmi disahkan dalam dokumen profil (talian +6062700490 adalah talian tetap pejabat).
-   * Apabila nombor mudah alih dimasukkan (contoh: "60123456789"), butang WhatsApp
-   * akan membuka sembang terus ke wa.me/{nombor}.
-   */
-  WHATSAPP_NUMBER: "", // Sunting di sini jika nombor WhatsApp disahkan tersedia
+  // Confirmed mobile; strip the leading + when constructing wa.me links.
+  WHATSAPP_NUMBER: "+60124342290",
 
   // Sejarah korporat dari profil
   history: {

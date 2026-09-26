@@ -1,4 +1,7 @@
+import { useLanguage as useRenderLanguage } from '../i18n';
+import { localizeTree } from '../i18n/render';
 import React from 'react';
+import { useLanguage } from '../i18n';
 import { IllustrationBadge } from '../components/IllustrationBadge';
 import { RoutePath } from '../types';
 import { SITE_CONFIG } from '../config/site';
@@ -26,6 +29,8 @@ interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }) => {
+  const { t: translateOutput } = useRenderLanguage();
+  const { t, language } = useLanguage();
   // Service icons lookup
   const getServiceIcon = (categoryId: string) => {
     switch (categoryId) {
@@ -56,8 +61,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
     PORTFOLIO_ITEMS.find((p) => p.id === 'p30-02') || PORTFOLIO_ITEMS[4],
   ].filter(Boolean);
 
-  return (
-    <div className="w-full">
+  return localizeTree((
+    <div className="w-full" lang={language === 'zh' ? 'zh-Hans' : language}>
       
       {/* 1. HERO SECTION: Corporate Architectural Style like Screenshot 1 */}
       <section className="relative overflow-hidden pt-12 pb-20 lg:pt-16 lg:pb-28 bg-[#030816] border-b border-slate-800/80">
@@ -166,7 +171,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                     <HardHat className="w-4 h-4" />
                     <span>Galeri Kerja & Ilustrasi</span>
                   </span>
-                  <span>{PORTFOLIO_ITEMS.length} Imej Portfolio</span>
+                  <span>{t('{count} Imej Portfolio').replace('{count}', String(PORTFOLIO_ITEMS.length))}</span>
                 </div>
 
                 {/* 2x2 Showcase of modest real-photo cards (contain rather than crop) */}
@@ -205,7 +210,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                     onClick={() => onNavigate('/portfolio')}
                     className="text-[14px] text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1 font-medium transition-colors"
                   >
-                    <span>Terokai keseluruhan {PORTFOLIO_ITEMS.length} imej portfolio mengikut kategori</span>
+                    <span>{t('Terokai keseluruhan {count} imej portfolio mengikut kategori').replace('{count}', String(PORTFOLIO_ITEMS.length))}</span>
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -312,7 +317,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
               onClick={() => onNavigate('/portfolio')}
               className="min-h-[48px] px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-white font-semibold text-[16px] border border-slate-700 inline-flex items-center gap-2 self-start md:self-auto transition-colors"
             >
-              <span>Lihat Semua {PORTFOLIO_ITEMS.length} Imej</span>
+              <span>{t('Lihat Semua {count} Imej').replace('{count}', String(PORTFOLIO_ITEMS.length))}</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -373,7 +378,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
 
               <div className="space-y-4 text-[18px] text-slate-300 leading-[1.6]">
                 <p>
-                  Diterajui oleh <strong className="text-white">Jayabalan A/L Santhiran</strong>, perniagaan kami bermula seawal tahun <strong className="text-white">2010</strong> sebagai entiti enterprise sebelum diperbadankan secara rasmi sebagai <strong className="text-white">Pertama Jaya Construction & Engineering Sdn Bhd (1411274-D)</strong> pada tahun <strong className="text-white">2021</strong>.
+                  {t('Diterajui oleh James, perniagaan kami bermula seawal tahun 2010 sebagai entiti enterprise sebelum diperbadankan secara rasmi sebagai Pertama Jaya Construction & Engineering Sdn Bhd (1411274-D) pada tahun 2021.')}
                 </p>
                 <p>
                   Dengan rekod pelaksanaan melebihi 11 tahun seperti dicatatkan dalam profil syarikat, kami mengutamakan mutu kerja berkualiti, keselamatan tapak yang ketat dan perancangan telus berlandaskan etika profesionalisme.
@@ -436,7 +441,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
 
                   <div>
                     <span className="text-[13px] text-slate-400 block">Peneraju Syarikat:</span>
-                    <span className="font-semibold text-cyan-300">Jayabalan A/L Santhiran</span>
+                    <span className="font-semibold text-cyan-300">James</span>
                   </div>
 
                   <div>
@@ -447,7 +452,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                   <div>
                     <span className="text-[13px] text-slate-400 block">Talian Telefon Pejabat:</span>
                     <a href={`tel:${SITE_CONFIG.phoneLandline}`} className="text-white hover:text-cyan-300 font-semibold transition-colors">
-                      {SITE_CONFIG.phoneDisplay} (Talian Tetap)
+                      {t('{phone} (Talian Tetap)').replace('{phone}', SITE_CONFIG.phoneDisplay)}
                     </a>
                   </div>
 
@@ -558,7 +563,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 Ketetapan Ketersediaan Liputan:
               </span>
               <p className="text-[16px] text-amber-100/90 leading-relaxed mt-0.5">
-                "{SITE_CONFIG.serviceAreaDisclaimer}" Syarikat tidak menjanjikan liputan menyeluruh seluruh negara secara automatik. Sila hubungi kami terlebih dahulu untuk semakan jadual dan logistik pasukan kerja tapak.
+                {t('“{disclaimer}” Syarikat tidak menjanjikan liputan menyeluruh seluruh negara secara automatik. Sila hubungi kami terlebih dahulu untuk semakan jadual dan logistik pasukan kerja tapak.').replace('{disclaimer}', t(SITE_CONFIG.serviceAreaDisclaimer))}
               </p>
             </div>
           </div>
@@ -669,11 +674,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
           </div>
 
           <p className="text-[14px] text-slate-400 pt-2">
-            Talian Pejabat: {SITE_CONFIG.phoneDisplay} • Emel: {SITE_CONFIG.email}
+            {t('Talian Pejabat: {phone} • Emel: {email}').replace('{phone}', SITE_CONFIG.phoneDisplay).replace('{email}', SITE_CONFIG.email)}
           </p>
         </div>
       </section>
 
     </div>
-  );
+  ), translateOutput);
 };
