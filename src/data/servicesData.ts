@@ -15,7 +15,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Pemasangan kekuda keluli bumbung dan sistem perpaipan asas'
     ],
     sampleImages: [
-      '/assets/portfolio/housing/p28-01.jpg'
+      '/assets/portfolio/housing/p28-01.jpg',
+      '/assets/portfolio/generated/p28-04.webp'
     ]
   },
   {
@@ -89,7 +90,8 @@ export const SERVICES_DATA: ServiceItem[] = [
       'Pemasangan kerangka tingkap, pintu dan kerja lepaan simen'
     ],
     sampleImages: [
-      '/assets/portfolio/generated/p28-04.webp'
+      '/assets/services/renovation/exterior-work.webp',
+      '/assets/services/renovation/interior-work.webp'
     ]
   },
   {

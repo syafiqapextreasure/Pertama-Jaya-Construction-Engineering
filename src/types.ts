@@ -49,7 +49,7 @@ export interface ServiceItem {
 
 export interface PortfolioItem {
   id: string;
-  category: 'Saliran' | 'Rumah' | 'Slab Gas' | 'Jambatan' | 'Pam/Blower/STP';
+  category: 'Saliran' | 'Rumah' | 'Ubah Suai' | 'Slab Gas' | 'Jambatan' | 'Pam/Blower/STP';
   subcategory: string;
   filename: string;
   relPath: string;

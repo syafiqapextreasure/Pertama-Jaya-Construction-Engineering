@@ -2,10 +2,10 @@ import { useLanguage as useRenderLanguage } from '../i18n';
 import { localizeTree } from '../i18n/render';
 import React, { useEffect } from 'react';
 import { useLanguage } from '../i18n';
-import { IllustrationBadge } from './IllustrationBadge';
+
 import { PortfolioItem } from '../types';
 import { getFallbackPhoto } from '../data/portfolioData';
-import { X, ChevronLeft, ChevronRight, FileText, Info } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface LightboxProps {
   item: PortfolioItem | null;
@@ -51,7 +51,7 @@ export const Lightbox: React.FC<LightboxProps> = ({
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`${t('Paparan penuh imej projek')} ${item.filename}`}
+      aria-label={t(item.subcategory)}
       className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 backdrop-blur-md p-2 sm:p-4 md:p-6 animate-in fade-in duration-200"
     >
       {/* Backdrop click to close */}
@@ -63,13 +63,11 @@ export const Lightbox: React.FC<LightboxProps> = ({
         {/* Header Bar */}
         <div className="flex flex-wrap items-center justify-between gap-2 px-4 sm:px-6 py-3.5 bg-slate-950/80 border-b border-slate-800">
           <div className="flex flex-wrap items-center gap-3">
-            {item.imageProvenance === 'ai-generated' && <IllustrationBadge />}
+
             <span className="px-2.5 py-1 text-[13px] font-bold tracking-wider uppercase rounded bg-cyan-400 text-slate-950">
               {t(item.category)}
             </span>
-            <span className="text-[15px] sm:text-[16px] text-slate-200 font-mono">
-              {item.photoUrl?.split('/').pop() || item.filename}
-            </span>
+
             <span className="text-[13px] text-slate-400 hidden sm:inline">
               ({currentIndex + 1} {t('daripada')} {items.length})
             </span>
@@ -127,23 +125,10 @@ export const Lightbox: React.FC<LightboxProps> = ({
             <h4 className="text-[16px] sm:text-[17px] font-semibold text-white">
               {t(item.subcategory)}
             </h4>
-            <p className="text-[14px] text-slate-400 flex items-center gap-1.5 mt-0.5">
-              <Info className="w-4 h-4 text-cyan-400 flex-shrink-0" />
-              <span>
-                {t(item.imageProvenance === 'ai-generated'
-                  ? 'Ilustrasi janaan AI, bukan foto dokumentasi tapak sebenar. Rujuk foto asal untuk rekod sumber.'
-                  : 'Imej portfolio. Tiada nama klien atau lokasi khusus dilabelkan tanpa kapsyen rasmi.')}
-              </span>
-            </p>
-            <a href={item.relPath} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[44px] items-center text-[14px] text-cyan-300 underline underline-offset-4 hover:text-cyan-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400">
-              {t('Lihat foto asal (JPEG)')}
-            </a>
+
           </div>
 
-          <div className="text-[13px] text-slate-400 font-mono bg-slate-950 px-3 py-1.5 rounded border border-slate-800 flex items-center gap-2 self-start sm:self-center">
-            <FileText className="w-4 h-4 text-cyan-400" />
-            <span>ID: {item.id}</span>
-          </div>
+
         </div>
 
       </div>

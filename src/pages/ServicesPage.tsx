@@ -6,7 +6,7 @@ import { RoutePath } from '../types';
 import { SERVICES_DATA } from '../data/servicesData';
 import { SITE_CONFIG } from '../config/site';
 import { getFallbackPhoto, PORTFOLIO_ITEMS } from '../data/portfolioData';
-import { IllustrationBadge } from '../components/IllustrationBadge';
+
 import { CheckCircle, ArrowRight, Phone, MessageSquare, Info } from 'lucide-react';
 
 interface ServicesPageProps {
@@ -126,7 +126,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                       <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
                         {service.sampleImages.map((imgPath, imgIdx) => {
                           const portfolioItem = PORTFOLIO_ITEMS.find((item) => item.photoUrl === imgPath);
-                          const isGenerated = portfolioItem?.imageProvenance === 'ai-generated';
+                          const sceneCaption = imgPath.includes('/services/renovation/exterior') ? 'Fasad rumah dengan perancah dan kerja lepaan' : imgPath.includes('/services/renovation/interior') ? 'Ruang dalaman dengan kerja jubin dan kemasan dinding' : portfolioItem?.subcategory;
                           return (
                           <div
                             key={imgIdx}
@@ -135,7 +135,7 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                             <div className="aspect-[16/10] w-full rounded bg-slate-900 overflow-hidden flex items-center justify-center">
                               <img
                                 src={imgPath}
-                                alt={portfolioItem?.altText ? t(portfolioItem.altText) : t('Imej portfolio bagi {service} ({number})').replace('{service}', t(service.title)).replace('{number}', String(imgIdx + 1))}
+                                alt={sceneCaption ? t(sceneCaption) : t(service.title)}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 loading="lazy"
                                 referrerPolicy="no-referrer"
@@ -147,17 +147,14 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
                                 }}
                               />
                             </div>
-                            <div className="mt-1.5 px-1 flex items-center justify-between text-[12px] text-slate-400 font-mono">
-                              <span>{imgPath.split('/').pop()}</span>
-                              {isGenerated ? <IllustrationBadge /> : <span className="text-cyan-400">Imej Portfolio</span>}
+                            <div className="mt-1.5 px-1 text-[13px] text-slate-300">
+                              {sceneCaption ? t(sceneCaption) : t(service.title)}
                             </div>
                           </div>
                         );})}
                       </div>
 
-                      <p className="text-[12px] text-slate-400 italic">
-                        *Imej berlabel “Ilustrasi AI” bukan foto tapak sebenar. Foto asal boleh dilihat dalam paparan penuh di halaman portfolio.
-                      </p>
+
                     </>
                   ) : (
                     <div className="rounded-xl bg-slate-950 border border-dashed border-slate-700 p-4 text-[14px] text-slate-400 leading-relaxed">

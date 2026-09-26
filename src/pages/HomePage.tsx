@@ -2,7 +2,7 @@ import { useLanguage as useRenderLanguage } from '../i18n';
 import { localizeTree } from '../i18n/render';
 import React from 'react';
 import { useLanguage } from '../i18n';
-import { IllustrationBadge } from '../components/IllustrationBadge';
+
 import { RoutePath } from '../types';
 import { SITE_CONFIG } from '../config/site';
 import { SERVICES_DATA } from '../data/servicesData';
@@ -169,7 +169,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-800 text-[13px] text-slate-400">
                   <span className="font-semibold text-cyan-300 flex items-center gap-1.5">
                     <HardHat className="w-4 h-4" />
-                    <span>Galeri Kerja & Ilustrasi</span>
+                    <span>Galeri Portfolio</span>
                   </span>
                   <span>{t('{count} Imej Portfolio').replace('{count}', String(PORTFOLIO_ITEMS.length))}</span>
                 </div>
@@ -199,7 +199,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                       </div>
                       <div className="mt-1 px-1 flex items-center justify-between text-[12px]">
                         <span className="font-bold text-slate-200">{item.category}</span>
-                        <span className="text-slate-400 font-mono text-[11px]">{item.id}</span>
                       </div>
                     </div>
                   ))}
@@ -309,7 +308,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 Portfolio Terpilih
               </h2>
               <p className="text-[17px] text-slate-300 mt-1 max-w-xl">
-                Pilihan imej portfolio dan ilustrasi AI. Imej berlabel “Ilustrasi AI” bukan foto tapak sebenar; foto asal boleh dilihat dalam portfolio.
+                Pilihan pemandangan pembinaan dan kejuruteraan daripada galeri kami.
               </p>
             </div>
 
@@ -346,10 +345,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenWhatsApp }
                 </div>
 
                 <div className="pt-3 px-1">
-                  {item.imageProvenance === 'ai-generated' && <div className="mb-2"><IllustrationBadge /></div>}
+
                   <div className="flex items-center justify-between text-[13px] mb-1">
                     <span className="font-bold text-cyan-300">{item.category}</span>
-                    <span className="font-mono text-slate-400 text-[12px]">{item.filename}</span>
+
                   </div>
                   <h4 className="text-[15px] font-medium text-slate-200 group-hover:text-white line-clamp-2 leading-snug">
                     {item.subcategory}

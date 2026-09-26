@@ -12,6 +12,9 @@ import { PortfolioItem, RecordedProject } from '../types';
  * menyebabkan imej 404 dan fallback berulang pada kad galeri.
  */
 const RAW_PORTFOLIO_ITEMS: PortfolioItem[] = [
+  { id: 'renovation-kitchen', category: 'Ubah Suai', subcategory: 'Dapur dengan Kabinet Kayu', filename: 'kitchen.webp', relPath: '/assets/portfolio/renovation/kitchen.webp', altText: 'Dapur dengan kabinet kayu, kaunter cerah dan tingkap', uploadedAttachment: false, imageProvenance: 'ai-generated' },
+  { id: 'renovation-bathroom', category: 'Ubah Suai', subcategory: 'Bilik Mandi dengan Pancuran Kaca', filename: 'bathroom.webp', relPath: '/assets/portfolio/renovation/bathroom.webp', altText: 'Bilik mandi berjubin dengan pancuran kaca dan kabinet sinki', uploadedAttachment: false, imageProvenance: 'ai-generated' },
+  { id: 'renovation-exterior', category: 'Ubah Suai', subcategory: 'Fasad Rumah & Anjung', filename: 'exterior.webp', relPath: '/assets/portfolio/renovation/exterior.webp', altText: 'Fasad rumah setingkat dengan anjung berbumbung dan pagar', uploadedAttachment: false, imageProvenance: 'ai-generated' },
   // 1. Saliran & Pembetungan (4 items)
   { id: 'p27-01', category: 'Saliran', subcategory: 'Pemasangan Kotak Pembetung (Box Culvert)', filename: 'p27-01.jpg', relPath: '/assets/portfolio/drainage/p27-01.jpg', altText: 'Pemasangan kotak pembetung konkrit pratuang bersama sokongan jentolak (p27-01)', uploadedAttachment: true },
   { id: 'p27-02', category: 'Saliran', subcategory: 'Penjajaran Saliran U-Drain Pratuang', filename: 'p27-02.jpg', relPath: '/assets/portfolio/drainage/p27-02.jpg', altText: 'Penurunan dan penjajaran unit parit U-drain konkrit pratuang (p27-02)', uploadedAttachment: true },
@@ -44,6 +47,7 @@ const RAW_PORTFOLIO_ITEMS: PortfolioItem[] = [
 ];
 
 export const CATEGORY_FALLBACK_MAP: Record<string, string> = {
+  'Ubah Suai': '/assets/portfolio/renovation/exterior.webp',
   'Saliran': '/assets/portfolio/drainage/p27-01.jpg',
   'Rumah': '/assets/portfolio/housing/p28-01.jpg',
   'Slab Gas': '/assets/portfolio/gas-slab-protection/p29-01.jpg',
@@ -73,8 +77,8 @@ const GENERATED_DISPLAY_IDS = new Set(['p28-02', 'p28-03', 'p28-04', 'p31-01', '
 export const PORTFOLIO_ITEMS: PortfolioItem[] = RAW_PORTFOLIO_ITEMS.map((item) => ({
   ...item,
   photoUrl: GENERATED_DISPLAY_IDS.has(item.id) ? `/assets/portfolio/generated/${item.id}.webp` : item.relPath,
-  imageProvenance: GENERATED_DISPLAY_IDS.has(item.id) ? 'ai-generated' : undefined,
-  altText: GENERATED_DISPLAY_IDS.has(item.id) ? `Ilustrasi AI: ${item.altText}` : item.altText,
+  imageProvenance: GENERATED_DISPLAY_IDS.has(item.id) ? 'ai-generated' : item.imageProvenance,
+  altText: item.altText.replace(/ \(p\d+-\d+\)/g, ''),
 }));
 
 /**

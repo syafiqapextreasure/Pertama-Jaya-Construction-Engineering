@@ -4,10 +4,9 @@ import React, { useState, useMemo } from 'react';
 import { PortfolioItem } from '../types';
 import { PORTFOLIO_ITEMS, RECORDED_PROJECTS, getFallbackPhoto } from '../data/portfolioData';
 import { Lightbox } from '../components/Lightbox';
-import { IllustrationBadge } from '../components/IllustrationBadge';
-import { MapPin, Info, Image as ImageIcon, ZoomIn } from 'lucide-react';
+import { MapPin, Image as ImageIcon, ZoomIn } from 'lucide-react';
 
-type FilterCategory = 'Semua' | 'Saliran' | 'Rumah' | 'Slab Gas' | 'Jambatan' | 'Pam/Blower/STP';
+type FilterCategory = 'Semua' | 'Saliran' | 'Rumah' | 'Ubah Suai' | 'Slab Gas' | 'Jambatan' | 'Pam/Blower/STP';
 
 export const PortfolioPage: React.FC = () => {
   const { t: translateOutput } = useRenderLanguage();
@@ -44,6 +43,7 @@ export const PortfolioPage: React.FC = () => {
     { label: 'Semua', count: PORTFOLIO_ITEMS.length },
     { label: 'Saliran', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Saliran').length },
     { label: 'Rumah', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Rumah').length },
+    { label: 'Ubah Suai', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Ubah Suai').length },
     { label: 'Slab Gas', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Slab Gas').length },
     { label: 'Jambatan', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Jambatan').length },
     { label: 'Pam/Blower/STP', count: PORTFOLIO_ITEMS.filter((p) => p.category === 'Pam/Blower/STP').length },
@@ -57,22 +57,16 @@ export const PortfolioPage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-4">
             <span className="px-3.5 py-1.5 rounded-full bg-cyan-950 border border-cyan-500/30 text-cyan-300 text-[14px] font-semibold tracking-wider uppercase">
-              Galeri Portfolio & Ilustrasi
+              Galeri Portfolio
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight font-['Space_Grotesk']">
               Portfolio Project
             </h1>
             <p className="text-[18px] lg:text-[20px] text-slate-300 leading-[1.6]">
-              Galeri imej dan ilustrasi kerja pembinaan, perparitan, papak saluran gas, struktur jambatan dan sistem mekanikal.
+              Galeri pembinaan, ubah suai, saliran, struktur jambatan dan sistem mekanikal.
             </p>
 
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 text-[14px] text-slate-300 flex items-start gap-3">
-              <Info className="w-5 h-5 text-cyan-400 mt-0.5 flex-shrink-0" />
-              <div>
-                <strong className="text-white block">Ketelusan Imej:</strong>
-                Imej berlabel “Ilustrasi AI” ialah visual janaan AI, bukan foto dokumentasi tapak sebenar. Foto asal tersedia melalui pautan dalam paparan penuh. Tiada imej dipadankan dengan klien atau lokasi tanpa rekod rasmi.
-              </div>
-            </div>
+
           </div>
         </div>
       </section>
@@ -157,7 +151,7 @@ export const PortfolioPage: React.FC = () => {
             <div className="flex items-center gap-3">
               <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-[13px] font-medium">
                 <ImageIcon className="w-4 h-4 text-cyan-400" />
-                <span>Foto & Ilustrasi Berlabel</span>
+                <span>Galeri Portfolio</span>
               </span>
 
               <div className="hidden lg:flex items-center gap-1.5 text-[13px] text-slate-400">
@@ -182,7 +176,7 @@ export const PortfolioPage: React.FC = () => {
                   }
                 }}
                 className="group relative cursor-pointer rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/60 p-3 flex flex-col justify-between transition-all duration-200 shadow-md hover:shadow-xl hover:shadow-cyan-950/20 focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:outline-none"
-                aria-label={`Buka ${item.imageProvenance === 'ai-generated' ? 'ilustrasi AI' : 'imej'} ${item.id} kategori ${item.category}`}
+                aria-label={translateOutput(item.subcategory)}
               >
                 {/* Image Box */}
                 <div className="relative aspect-[4/3] w-full rounded-xl bg-slate-950 overflow-hidden flex items-center justify-center">
@@ -213,12 +207,12 @@ export const PortfolioPage: React.FC = () => {
 
                 {/* Card Meta */}
                 <div className="pt-3 px-1">
-                  {item.imageProvenance === 'ai-generated' && <div className="mb-2"><IllustrationBadge /></div>}
+
                   <div className="flex items-center justify-between text-[12px] mb-1">
                     <span className="font-bold text-cyan-300 uppercase tracking-wider">
                       {item.category}
                     </span>
-                    <span className="font-mono text-slate-400">{item.filename}</span>
+
                   </div>
                   <h3 className="text-[14px] font-semibold text-slate-200 group-hover:text-white line-clamp-2 leading-snug">
                     {item.subcategory}

@@ -1,0 +1,14 @@
+{
+  "model": "gpt-image-2",
+  "provider": "openai-codex",
+  "quality": "high",
+  "provenance": "AI-generated scene visuals; not records of completed client projects or specific project locations.",
+  "encoding": { "format": "webp", "quality": 82, "method": 6 },
+  "assets": [
+    { "source": "openai_codex_gpt-image-2-high_20260926_200651_30f401ec.png", "asset": "public/assets/services/renovation/exterior-work.webp" },
+    { "source": "openai_codex_gpt-image-2-high_20260926_200726_ffb0e417.png", "asset": "public/assets/services/renovation/interior-work.webp" },
+    { "source": "openai_codex_gpt-image-2-high_20260926_200758_3ebdff60.png", "asset": "public/assets/portfolio/renovation/kitchen.webp" },
+    { "source": "openai_codex_gpt-image-2-high_20260926_200834_c20ce9f9.png", "asset": "public/assets/portfolio/renovation/bathroom.webp" },
+    { "source": "openai_codex_gpt-image-2-high_20260926_200922_d0663e56.png", "asset": "public/assets/portfolio/renovation/exterior.webp" }
+  ]
+}

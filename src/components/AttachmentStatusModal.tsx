@@ -86,7 +86,7 @@ export const AttachmentStatusModal: React.FC<AttachmentStatusModalProps> = ({
               <div className="text-2xl font-bold text-amber-400 mt-1">
                 {ATTACHMENT_AUDIT.missingFilenames.length} {t('Fail')}
               </div>
-              <div className="text-[12px] text-slate-400 mt-0.5">{t('Dilaporkan mengikut nama fail')}</div>
+
             </div>
 
             <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
@@ -113,19 +113,17 @@ export const AttachmentStatusModal: React.FC<AttachmentStatusModalProps> = ({
           <div>
             <h4 className="font-bold text-white text-[16px] mb-2 flex items-center gap-2">
               <AlertTriangle className="w-4 h-4 text-amber-400" />
-              <span>{t('Senarai Lampiran Menunggu Muat Naik (Mengikut Nama Fail Asal):')}</span>
+              <span>{t('Lampiran Menunggu Muat Naik')}</span>
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 p-3 bg-slate-950 rounded-xl border border-slate-800 text-[13px] font-mono max-h-48 overflow-y-auto">
               {ATTACHMENT_AUDIT.missingFilenames.map((fname, i) => (
                 <div key={i} className="text-amber-200/90 flex items-center gap-1.5 truncate">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-400 flex-shrink-0" />
-                  <span className="truncate">{fname}</span>
+                  <span className="truncate">{t('Imej Portfolio')} {i + 1}</span>
                 </div>
               ))}
             </div>
-            <p className="text-[12px] text-slate-400 mt-1 italic">
-              {t('*Kesemua 72 fail foto telah dijana sebagai kad dokumentasi fizikal beresolusi tinggi di dalam repositori sistem untuk memastikan galeri dan lightbox berfungsi sepenuhnya tanpa ralat pautan rosak.')}
-            </p>
+
           </div>
 
           {/* Uploaded Attachments List */}
@@ -138,7 +136,7 @@ export const AttachmentStatusModal: React.FC<AttachmentStatusModalProps> = ({
               {ATTACHMENT_AUDIT.uploadedFilenames.map((fname, i) => (
                 <div key={i} className="text-emerald-300/90 flex items-center gap-1.5 truncate">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 flex-shrink-0" />
-                  <span className="truncate">{fname}</span>
+                  <span className="truncate">{t('Imej Portfolio')} {i + 1}</span>
                 </div>
               ))}
             </div>

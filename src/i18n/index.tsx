@@ -6,7 +6,13 @@ import { sharedTranslations } from './shared';
 export type Language = 'en' | 'ms' | 'zh';
 export type Translations = Record<string, { en: string; zh: string }>;
 export const LANGUAGE_STORAGE_KEY = 'pertama-jaya-language';
-const translations: Translations = { ...coreTranslations, ...otherTranslations, ...sharedTranslations };
+// Keep technical image identifiers out of translated captions and accessible text.
+const cleanCaption = (text: string) => text.replace(/\s*[（(]p\d+-\d+[）)]/g, '');
+const translations: Translations = Object.fromEntries(
+  Object.entries({ ...coreTranslations, ...otherTranslations, ...sharedTranslations }).map(([key, value]) => [
+    cleanCaption(key), { en: cleanCaption(value.en), zh: cleanCaption(value.zh) },
+  ]),
+);
 const isLanguage = (value: unknown): value is Language => value === 'en' || value === 'ms' || value === 'zh';
 const LanguageContext = createContext<{ language: Language; setLanguage: (language: Language) => void; t: (source: string) => string } | null>(null);
 
